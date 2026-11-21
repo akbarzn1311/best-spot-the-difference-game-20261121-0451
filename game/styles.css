@@ -1,0 +1,111 @@
+/* Twin Worlds — Spot the Difference. All styling is local; no web fonts. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: #171226 radial-gradient(1200px 700px at 50% -10%, #2c2145 0%, #171226 60%);
+  color: #f3ead3;
+  font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+  overflow: hidden;
+}
+#app { width: 1280px; height: 800px; margin: 0 auto; padding: 14px 20px 10px; }
+
+/* ---------- HUD ---------- */
+#hud {
+  display: flex; align-items: center; gap: 14px;
+  height: 64px; padding: 0 6px;
+}
+.brand {
+  font-size: 24px; font-weight: 900; letter-spacing: 3px; color: #ffd76a;
+  text-shadow: 0 2px 0 #7a4d12, 0 0 22px rgba(255, 190, 60, 0.45);
+  white-space: nowrap;
+}
+.level-name { font-size: 17px; color: #bfe3ff; font-style: italic; white-space: nowrap; }
+.counter {
+  font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #ffffff;
+  background: #2b6cb0; border: 2px solid #63b3ed; border-radius: 10px;
+  padding: 6px 14px; white-space: nowrap;
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.25);
+}
+.timer-wrap {
+  position: relative; flex: 1; height: 30px; background: #241b33;
+  border: 2px solid #4a3a63; border-radius: 15px; overflow: hidden;
+}
+.timer-bar { height: 100%; width: 100%; background: linear-gradient(90deg, #38b24a, #7ed957); transition: width 0.2s linear; }
+.timer-wrap.low .timer-bar { background: linear-gradient(90deg, #e53e3e, #f6ad55); }
+.timer-text {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 900; color: #fff; text-shadow: 0 1px 3px #000;
+}
+.score-box { font-size: 18px; font-weight: 800; color: #ffd76a; white-space: nowrap; }
+.score-box span { color: #fff; }
+.combo { color: #ff9f43 !important; font-size: 15px; margin-left: 6px; }
+.hud-btn, .btn {
+  font-family: inherit; font-size: 15px; font-weight: 800; color: #1d1430;
+  background: linear-gradient(#ffe08a, #ffb347); border: 2px solid #a86f00;
+  border-radius: 10px; padding: 8px 14px; cursor: pointer;
+  box-shadow: 0 3px 0 #7a4d12;
+}
+.hud-btn:active, .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #7a4d12; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.secondary { background: linear-gradient(#dbeafe, #93c5fd); border-color: #2b6cb0; box-shadow: 0 3px 0 #1e3a5f; }
+
+/* ---------- Boards ---------- */
+#boards { display: flex; gap: 20px; justify-content: center; margin-top: 6px; }
+.panel {
+  position: relative; background: #0e0a1a; border: 3px solid #5b4a7a;
+  border-radius: 12px; padding: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.panel.shake { animation: shake 0.3s; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.panel-tag {
+  position: absolute; top: -13px; left: 14px; z-index: 2;
+  background: #ffd76a; color: #1d1430; font-size: 13px; font-weight: 900;
+  letter-spacing: 1px; padding: 3px 10px; border-radius: 8px;
+  border: 2px solid #a86f00;
+}
+canvas { display: block; border-radius: 6px; cursor: crosshair; }
+
+/* ---------- Footer controls ---------- */
+#controls {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 12px; padding: 0 6px;
+}
+.level-dots { display: flex; gap: 8px; }
+.dot {
+  width: 34px; height: 34px; border-radius: 50%; border: 2px solid #5b4a7a;
+  background: #241b33; color: #cbb8ff; font-weight: 900; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.dot.done { background: #38b24a; border-color: #7ed957; color: #fff; }
+.dot.current { background: #ffd76a; border-color: #a86f00; color: #1d1430; }
+.controls-mid { display: flex; gap: 12px; }
+.best { font-size: 15px; font-weight: 800; color: #bfe3ff; }
+
+/* ---------- Overlay screens ---------- */
+#overlay {
+  position: fixed; inset: 0; background: rgba(10, 6, 20, 0.72);
+  display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+#overlay.hidden { display: none; }
+.card {
+  width: 620px; background: linear-gradient(#2b2140, #1a1428);
+  border: 3px solid #ffd76a; border-radius: 18px; padding: 34px 40px;
+  text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+.card h1 { font-size: 40px; color: #ffd76a; letter-spacing: 2px; margin-bottom: 6px; }
+.card h2 { font-size: 24px; color: #fff; margin-bottom: 10px; }
+.card p { font-size: 16px; line-height: 1.55; color: #e6dcf5; margin-bottom: 12px; }
+.card .big { font-size: 22px; font-weight: 900; color: #7ed957; }
+.card .row { display: flex; gap: 12px; justify-content: center; margin-top: 18px; }
+.card .keys { font-size: 13px; color: #9d8fc2; margin-top: 16px; }
+.card .scene-pick { display: flex; gap: 10px; justify-content: center; margin: 14px 0 4px; }
+.card .scene-pick button {
+  font-family: inherit; font-size: 14px; font-weight: 800; color: #1d1430;
+  background: linear-gradient(#dbeafe, #93c5fd); border: 2px solid #2b6cb0;
+  border-radius: 10px; padding: 10px 12px; cursor: pointer;
+}
+.card .scene-pick button:hover { background: linear-gradient(#ffe08a, #ffb347); }

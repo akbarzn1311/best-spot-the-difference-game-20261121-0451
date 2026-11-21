@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Worlds — Spot the Difference</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="brand">TWIN&nbsp;WORLDS</div>
+    <div class="level-name" id="levelName">Lantern Market</div>
+    <div class="counter" id="counter">FOUND 0 / 8</div>
+    <div class="timer-wrap" title="Time left">
+      <div class="timer-bar" id="timerBar"></div>
+      <span class="timer-text" id="timerText">2:30</span>
+    </div>
+    <div class="score-box">SCORE <span id="score">0</span><span class="combo" id="combo"></span></div>
+    <button class="hud-btn" id="muteBtn" title="Sound on/off (M)">SOUND ON</button>
+  </header>
+
+  <main id="boards">
+    <section class="panel" id="panelWrapA">
+      <div class="panel-tag">A &middot; ORIGINAL</div>
+      <canvas id="panelA" width="600" height="540"></canvas>
+    </section>
+    <section class="panel" id="panelWrapB">
+      <div class="panel-tag">B &middot; TWIN</div>
+      <canvas id="panelB" width="600" height="540"></canvas>
+    </section>
+  </main>
+
+  <footer id="controls">
+    <div class="level-dots" id="levelDots" title="Levels"></div>
+    <div class="controls-mid">
+      <button class="btn" id="hintBtn" title="Reveal one difference (H)">HINT &middot; 3 LEFT</button>
+      <button class="btn" id="restartBtn" title="Restart this level (R)">RESTART</button>
+      <button class="btn" id="levelsBtn" title="Back to level select">LEVELS</button>
+    </div>
+    <div class="best" id="bestLine">BEST 0</div>
+  </footer>
+
+  <div id="overlay" class="hidden">
+    <div class="card" id="overlayCard"></div>
+  </div>
+</div>
+<script src="src/rng.js"></script>
+<script src="src/draw.js"></script>
+<script src="src/scenes.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/engine.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
